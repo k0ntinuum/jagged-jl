@@ -98,10 +98,6 @@ function decrypt(c,q,n)
     c
 end
 
-
-
-    
-
 function demo(n)
     f = key(n)
     l = 32
@@ -115,60 +111,11 @@ function demo(n)
         print(yellow())
         print_vec(c)
         d = decrypt(c,f,n)
-#        print(gray(100))
-#        print_vec(p .!= c)
         println()
         d = decrypt(c,f,n)
         if p != d print("\nERROR\n") end
     end
 end
-#
-#function decode!(c,f,n)
-#    p = Int64[]
-#    for i in eachindex(c)
-#        push!(p, ( 2*n + c[i]  - f[1][1] - f[2][1])%n )
-#        swhich!(f)
-#        f[1][1] = (f[1][1] + p[i])%n
-#        f[2][1] = (f[2][1] + c[i])%n
-#    end
-#    p
-#end
-#
-
-#
-#function decrypt(c,q,n)
-#    l = length(q)
-#    for i in 1:l
-#        f = deepcopy(q)
-#        f[2] = circshift(f[2],i)
-#        f[1] = circshift(f[1],l + 1 - i)
-#        c = reverse(c)
-#        c = decode!(c,f,n)
-#    end
-#    c
-#end
-#
-#
-#function demo(n)
-#    l = 64
-#    f = key(n,l)
-#    print_key(f)
-#    println()
-#    for i in 1:10
-#        p = rand(0:n-1,l)
-#        print(red())
-#        print_vec(p)
-#        c = encrypt(p,f,n)
-#        print(yellow())
-#        print_vec(c)
-#        println()
-#        d = decrypt(c,f,n)
-#        if p != d print("\nERROR\n") end
-#    end
-#end
-#    
-#
-#
 
 
 
