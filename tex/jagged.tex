@@ -1,0 +1,58 @@
+
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{amssymb} %maths
+\usepackage{amsmath} %maths
+\usepackage[margin=0.2in]{geometry}
+\usepackage{graphicx}
+\usepackage{ulem}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+\usepackage{hyperref}
+\usepackage[autostyle]{csquotes}
+
+\usepackage{cancel}
+\renewcommand{\i}{\textit}
+\renewcommand{\b}{\textbf}
+\newcommand{\q}{\enquote}
+%\vskip1.0in
+
+
+
+
+
+\begin{document}
+
+{\setstretch{0.0}{
+
+
+\b{Jagged} is a \q{stack of wheels}. The key is a stack of vectors of different length, and it's the sum of the first elements of all these vectors that does most of the work. This sum is called the \q{stack.} Then all those first elements are modified. The ciphertext symbol is added to each of them, mod $n$. Finally, all of the wheels are turned one unit. Since the wheels have different sizes, the changes caused by a particular ciphertext symbol are quickly diffused throughout the key. The essence of the program is in these three functions:
+
+\begin{verbatim}
+
+function twist!(f,a,n)
+    for i in eachindex(f) f[i][1] = mod(f[i][1] + a,n) end
+end
+
+function roll!(f)
+    for i in eachindex(f) f[i] = circshift(f[i],1) end
+end
+
+function encode(p,f,n)
+    c = Int64[]
+    for i in eachindex(p)
+        push!(c, mod( stack(f) + p[i], n))
+        twist!(f,c[i],n)
+        roll!(f)  
+    end
+    c
+end
+\end{verbatim}
+
+
+
+\end{document}
