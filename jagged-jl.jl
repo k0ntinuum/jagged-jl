@@ -1,4 +1,5 @@
 using Random
+
 function key(n)
     max_width = 31
     num_discs = 11 
@@ -12,15 +13,29 @@ end
 function str(v)
     #out_alph = "abcdefghijklmnopqrstuvwxyz" * string('\u2586')    
     #out_alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" * string('\u25A0')
-    out_alph = "0|23456789"
+    out_alph = "0|23456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     join(map(i -> out_alph[i+1:i+1],v ))
 end
 
-rgb(r,g,b) =  "\e[38;2;$(r);$(g);$(b)m"
-red() = rgb(255,0,0)
-yellow() = rgb(255,255,0)
-white() = rgb(255,255,255)
-gray(h) = rgb(h,h,h)
+function rgb(r,g,b)
+    "\e[38;2;$(r);$(g);$(b)m"
+end
+
+function red()
+    rgb(255,0,0)
+end
+
+function yellow()
+    rgb(255,255,0)
+end
+
+function white()
+    rgb(255,255,255)
+end
+
+function gray(h)
+    rgb(h,h,h)
+end
 
 
 function print_key(f)
